@@ -1,0 +1,63 @@
+# Конфигурация PII-сканера
+
+scan:
+  # Максимальное число параллельных воркеров для парсинга/детекции
+  workers: 8
+  # Отдельный пул для OCR (CPU-тяжёлая работа, отделена от основной)
+  ocr_workers: 2
+  # Максимальный размер файла для полного чтения (МБ); сверх — потоковая обработка
+  max_file_size_mb: 200
+  # Максимальное количество страниц PDF для обработки
+  max_pdf_pages: 500
+  # Дедуп по xxhash содержимого
+  enable_dedup: true
+  # Чекпоинт для resume
+  checkpoint_path: "reports/.checkpoint.jsonl"
+
+ocr:
+  # auto: применять только когда экстрактор не вернул текст
+  # always: применять всегда (медленнее, но полнее)
+  # off: не применять
+  mode: "auto"
+  # tesseract | paddle
+  backend: "tesseract"
+  languages: ["rus", "eng"]
+  # Минимальный размер изображения для OCR (пиксели по короткой стороне)
+  min_side_px: 200
+  # Препроцессинг
+  preprocess:
+    deskew: true
+    binarize: true
+    upscale: 2.0
+
+# Контекстный скоринг — пороги confidence
+detect:
+  min_confidence: 0.6
+  # Окно для контекста (символов слева/справа)
+  context_window: 60
+  # Использовать NER (Natasha) — может быть медленно на больших текстах
+  use_ner: true
+  # Лимит длины текста для NER (символов на чанк)
+  ner_max_chars: 50000
+  # Максимум сэмплов чанков на файл (для очень больших — ограничивает контекст-скоринг)
+  max_chunks_per_file: 10000
+
+# Пороги для классификации УЗ
+classification:
+  # «Большой объём» госидентификаторов на файл (или строк со срабатываниями для CSV)
+  state_id_large_count: 10
+  state_id_large_ratio: 0.01
+  # «Большой объём» обычных ПДн
+  regular_pii_large_count: 50
+  regular_pii_large_ratio: 0.10
+
+reporting:
+  formats: ["csv", "json", "md", "html"]
+  # Маскирование значений: full | partial | hash_only
+  masking: "partial"
+  # Сохранять SHA-256 хэш оригинала для трассируемости
+  store_value_hash: true
+
+logging:
+  level: "INFO"
+  json: false
