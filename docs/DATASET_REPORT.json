@@ -1,0 +1,1179 @@
+{
+  "generated_at": "2026-04-19T10:02:03",
+  "overview": {
+    "root": "data/share",
+    "total_files": 3323,
+    "total_size_mb": 2817.4,
+    "median_size_kb": 269.24,
+    "mean_size_kb": 868.2,
+    "p95_size_kb": 2867.61,
+    "p99_size_mb": 8.92,
+    "max_size_mb": 181.54,
+    "empty_files": 1
+  },
+  "groups": [
+    {
+      "group": "Документы",
+      "count": 1780,
+      "size_mb": 2234.58,
+      "share_pct": 53.6
+    },
+    {
+      "group": "Изображения",
+      "count": 983,
+      "size_mb": 253.3,
+      "share_pct": 29.6
+    },
+    {
+      "group": "Веб",
+      "count": 483,
+      "size_mb": 277.4,
+      "share_pct": 14.5
+    },
+    {
+      "group": "Таблицы",
+      "count": 44,
+      "size_mb": 15.72,
+      "share_pct": 1.3
+    },
+    {
+      "group": "Текстовые",
+      "count": 13,
+      "size_mb": 0.04,
+      "share_pct": 0.4
+    },
+    {
+      "group": "Прочее",
+      "count": 11,
+      "size_mb": 11.68,
+      "share_pct": 0.3
+    },
+    {
+      "group": "Структурированные",
+      "count": 8,
+      "size_mb": 13.88,
+      "share_pct": 0.2
+    },
+    {
+      "group": "Видео",
+      "count": 1,
+      "size_mb": 10.81,
+      "share_pct": 0.0
+    }
+  ],
+  "extensions": [
+    {
+      "ext": ".pdf",
+      "group": "Документы",
+      "count": 1658,
+      "size_mb": 2221.6,
+      "median_kb": 439.45,
+      "max_mb": 181.54,
+      "samples": [
+        "Документы партнеров/%D0%92%D1%81%D0%B5%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%B0%D1%8F_%D0%BF%D0%B5%D1%80%D0%B5%D0%BF%D0%B8%D1%81%D1%8C_%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85.pdf",
+        "Документы партнеров/rules.pdf",
+        "Документы партнеров/agreement_reg.pdf"
+      ]
+    },
+    {
+      "ext": ".jpg",
+      "group": "Изображения",
+      "count": 691,
+      "size_mb": 142.23,
+      "median_kb": 124.84,
+      "max_mb": 5.34,
+      "samples": [
+        "Выгрузки/Сайты/95612331-14438121-image-a-96_1740585935880.jpg",
+        "Выгрузки/Сайты/20797_2000.jpg",
+        "Выгрузки/Сайты/IMG_8448.jpg"
+      ]
+    },
+    {
+      "ext": ".html",
+      "group": "Веб",
+      "count": 483,
+      "size_mb": 277.4,
+      "median_kb": 604.26,
+      "max_mb": 1.25,
+      "samples": [
+        "Выгрузки/Сайты/page_265.html",
+        "Выгрузки/Сайты/page_320.html",
+        "Выгрузки/Сайты/page_82.html"
+      ]
+    },
+    {
+      "ext": ".tif",
+      "group": "Изображения",
+      "count": 168,
+      "size_mb": 67.13,
+      "median_kb": 94.4,
+      "max_mb": 2.97,
+      "samples": [
+        "Архив сканы/z/zzz77d00/2064857737.tif",
+        "Архив сканы/z/zzz57d00/2029289405.tif",
+        "Архив сканы/z/zzz46d00/40015701-5701.tif"
+      ]
+    },
+    {
+      "ext": ".png",
+      "group": "Изображения",
+      "count": 118,
+      "size_mb": 41.17,
+      "median_kb": 254.74,
+      "max_mb": 2.9,
+      "samples": [
+        "Выгрузки/Сайты/9226_original.png",
+        "Выгрузки/Сайты/8816_800.png",
+        "Выгрузки/Сайты/20198_2000.png"
+      ]
+    },
+    {
+      "ext": ".docx",
+      "group": "Документы",
+      "count": 65,
+      "size_mb": 3.51,
+      "median_kb": 20.6,
+      "max_mb": 0.81,
+      "samples": [
+        "Выгрузки/Сайты/Доки/%D0%93%D0%9E%D0%A1%D0%A2%20%D0%A0%20%D0%A0%D0%B5%D0%B4%D0%BA%D0%BE%D0%B7%D0%B5%D0%BC%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D1%8B.%20%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C.%2018-04-22.docx",
+        "Прочее/Договор.docx",
+        "Прочее/63_ffa6_7.Gizlilik%20ve%20%C3%87erez%20Politikas%C4%B1_4064465.docx"
+      ]
+    },
+    {
+      "ext": ".xls",
+      "group": "Таблицы",
+      "count": 32,
+      "size_mb": 1.08,
+      "median_kb": 29.0,
+      "max_mb": 0.1,
+      "samples": [
+        "Прочее/sved_o_d_m_2017.xls",
+        "Прочее/sostav_gr.xls",
+        "Прочее/Главный бухгалтер- Балашова ТН.xls"
+      ]
+    },
+    {
+      "ext": ".rtf",
+      "group": "Документы",
+      "count": 30,
+      "size_mb": 2.54,
+      "median_kb": 0.52,
+      "max_mb": 0.96,
+      "samples": [
+        "Прочее/Bid_Bachelor-Specialist.rtf",
+        "Прочее/Rasporiagenie-1092-p_report-form.rtf",
+        "Прочее/FCP_competitions-notice.rtf"
+      ]
+    },
+    {
+      "ext": ".doc",
+      "group": "Документы",
+      "count": 27,
+      "size_mb": 6.93,
+      "median_kb": 48.0,
+      "max_mb": 2.44,
+      "samples": [
+        "Прочее/доп. об изменении цены_2ред.doc",
+        "Прочее/Inform-pismoSTO2016.doc",
+        "Прочее/Aula_Hispánica_vesna_2018_rus.doc"
+      ]
+    },
+    {
+      "ext": ".csv",
+      "group": "Таблицы",
+      "count": 12,
+      "size_mb": 14.64,
+      "median_kb": 635.42,
+      "max_mb": 4.22,
+      "samples": [
+        "Выгрузки/Логистика/customers.csv",
+        "Выгрузки/Логистика/products.csv",
+        "Выгрузки/Логистика/logistics.csv"
+      ]
+    },
+    {
+      "ext": ".txt",
+      "group": "Текстовые",
+      "count": 11,
+      "size_mb": 0.02,
+      "median_kb": 1.36,
+      "max_mb": 0.0,
+      "samples": [
+        "Выгрузки/дочерние предприятия/Employes/akt_priema_peredachi_rabochego_mesta.txt",
+        "Выгрузки/дочерние предприятия/Employes/zayavka_na_propusk_v_zhk.txt",
+        "Выгрузки/дочерние предприятия/Employes/zayavlenie_dostavka_oborudovaniya_domoi.txt"
+      ]
+    },
+    {
+      "ext": "(без расш.)",
+      "group": "Прочее",
+      "count": 11,
+      "size_mb": 11.68,
+      "median_kb": 296.0,
+      "max_mb": 3.45,
+      "samples": [
+        "Выгрузки/Сайты/away",
+        "lost+found/#591990",
+        "lost+found/#607968"
+      ]
+    },
+    {
+      "ext": ".gif",
+      "group": "Изображения",
+      "count": 6,
+      "size_mb": 2.77,
+      "median_kb": 29.98,
+      "max_mb": 2.6,
+      "samples": [
+        "Выгрузки/Сайты/data_atom.gif",
+        "Выгрузки/Сайты/9322_900.gif",
+        "Выгрузки/Сайты/121793_original.gif"
+      ]
+    },
+    {
+      "ext": ".json",
+      "group": "Структурированные",
+      "count": 5,
+      "size_mb": 0.28,
+      "median_kb": 2.89,
+      "max_mb": 0.27,
+      "samples": [
+        "Выгрузки/дочерние предприятия/Billing/plan.json",
+        "Прочее/incidents.schema.json",
+        "Прочее/incidents.json"
+      ]
+    },
+    {
+      "ext": ".parquet",
+      "group": "Структурированные",
+      "count": 3,
+      "size_mb": 13.59,
+      "median_kb": 4165.57,
+      "max_mb": 8.47,
+      "samples": [
+        "Выгрузки/дочерние предприятия/Billing/client.parquet",
+        "Выгрузки/дочерние предприятия/Billing/physical.parquet",
+        "Выгрузки/дочерние предприятия/Billing/company.parquet"
+      ]
+    },
+    {
+      "ext": ".md",
+      "group": "Текстовые",
+      "count": 2,
+      "size_mb": 0.02,
+      "median_kb": 10.76,
+      "max_mb": 0.01,
+      "samples": [
+        "Выгрузки/Логистика/sample.md",
+        "Выгрузки/дочерние предприятия/Billing/full/sample.md"
+      ]
+    },
+    {
+      "ext": ".mp4",
+      "group": "Видео",
+      "count": 1,
+      "size_mb": 10.81,
+      "median_kb": 11072.78,
+      "max_mb": 10.81,
+      "samples": [
+        "Прочее/CS10.mp4"
+      ]
+    }
+  ],
+  "size_histogram": [
+    {
+      "bucket": "0",
+      "count": 1,
+      "total_mb": 0.0
+    },
+    {
+      "bucket": "≤1 KB",
+      "count": 183,
+      "total_mb": 0.09
+    },
+    {
+      "bucket": "≤10 KB",
+      "count": 88,
+      "total_mb": 0.42
+    },
+    {
+      "bucket": "≤100 KB",
+      "count": 662,
+      "total_mb": 34.9
+    },
+    {
+      "bucket": "≤1 MB",
+      "count": 1847,
+      "total_mb": 745.28
+    },
+    {
+      "bucket": "≤10 MB",
+      "count": 517,
+      "total_mb": 1231.3
+    },
+    {
+      "bucket": "≤100 MB",
+      "count": 23,
+      "total_mb": 516.26
+    },
+    {
+      "bucket": "≤1 GB",
+      "count": 2,
+      "total_mb": 289.15
+    },
+    {
+      "bucket": ">1 GB",
+      "count": 0,
+      "total_mb": 0.0
+    }
+  ],
+  "age_histogram": [
+    {
+      "year": 2025,
+      "count": 3313
+    },
+    {
+      "year": 2026,
+      "count": 10
+    }
+  ],
+  "tree": {
+    "top_dirs": [
+      {
+        "path": "Прочее",
+        "files": 1791,
+        "size_mb": 2255.44
+      },
+      {
+        "path": "Выгрузки",
+        "files": 1359,
+        "size_mb": 524.97
+      },
+      {
+        "path": "Архив сканы",
+        "files": 150,
+        "size_mb": 16.12
+      },
+      {
+        "path": "Документы партнеров",
+        "files": 15,
+        "size_mb": 12.46
+      },
+      {
+        "path": "lost+found",
+        "files": 8,
+        "size_mb": 8.41
+      }
+    ],
+    "depth_histogram": [
+      {
+        "depth": 1,
+        "count": 1814
+      },
+      {
+        "depth": 2,
+        "count": 1305
+      },
+      {
+        "depth": 3,
+        "count": 198
+      },
+      {
+        "depth": 4,
+        "count": 6
+      }
+    ],
+    "max_depth": 4
+  },
+  "duplicates": {
+    "available": true,
+    "scanned": 3319,
+    "skipped_too_large": 4,
+    "unique_files": 3099,
+    "duplicate_groups": 41,
+    "total_duplicates": 220,
+    "bytes_saved_mb": 16.79,
+    "top_groups": [
+      {
+        "size_kb": 0.52,
+        "copies": 107,
+        "paths": [
+          "Прочее/Bid_Bachelor-Specialist.rtf",
+          "Прочее/Competitions_RFFI_list-2018_07.10-info.pdf",
+          "Прочее/Rasporiagenie-1092-p_report-form.rtf",
+          "Прочее/ÂÕ1011.pdf",
+          "Прочее/StateTask_report_2015-info.pdf"
+        ]
+      },
+      {
+        "size_kb": 16.11,
+        "copies": 29,
+        "paths": [
+          "Прочее/Problems.docx",
+          "Прочее/P_46.pdf",
+          "Прочее/Metod_Rek_Rating2015.pdf",
+          "Прочее/P639.pdf",
+          "Прочее/P148.pdf"
+        ]
+      },
+      {
+        "size_kb": 0.75,
+        "copies": 18,
+        "paths": [
+          "Выгрузки/Сайты/page_183.html",
+          "Выгрузки/Сайты/page_244.html",
+          "Выгрузки/Сайты/page_252.html",
+          "Выгрузки/Сайты/page_76.html",
+          "Выгрузки/Сайты/page_99.html"
+        ]
+      },
+      {
+        "size_kb": 0.97,
+        "copies": 10,
+        "paths": [
+          "Прочее/28_03_01.pdf",
+          "Прочее/sved_o_d_m_2017.xls",
+          "Прочее/11_03_03.pdf",
+          "Прочее/11_03_04.pdf",
+          "Прочее/Kol_dog_2024-2027.pdf"
+        ]
+      },
+      {
+        "size_kb": 1.66,
+        "copies": 7,
+        "paths": [
+          "Прочее/%D0%A0%D0%90%D0%A1_95-%D1%80%20%D0%9F%D1%80%D0%B5%D1%81%D1%82%D0%B8%D0%B6%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D0%B0%D0%B5%D0%B9.pdf",
+          "Прочее/P1657.pdf",
+          "Прочее/Письмо ВАК N 01-02_111 Для сайта.pdf",
+          "Прочее/%D0%AE%D0%A4%D0%A3+%20%D0%A0%D0%A1%D0%92%20%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5%20%20N01-19-49%20%D0%BE%D1%82%2009.04.2021.pdf",
+          "Прочее/Special%20sections%20of%20physical%20materials%20science.pdf"
+        ]
+      },
+      {
+        "size_kb": 0.14,
+        "copies": 6,
+        "paths": [
+          "Выгрузки/Сайты/vino-768x990.jpg",
+          "Выгрузки/Сайты/book21.jpg",
+          "Выгрузки/Сайты/DSC02636.jpg",
+          "Выгрузки/Сайты/cover1.jpg",
+          "Выгрузки/Сайты/Доки/neutrality-treaty.pdf"
+        ]
+      },
+      {
+        "size_kb": 296.0,
+        "copies": 6,
+        "paths": [
+          "lost+found/#591990",
+          "lost+found/#607968",
+          "lost+found/#685295",
+          "lost+found/#469418",
+          "lost+found/#872002"
+        ]
+      },
+      {
+        "size_kb": 151.1,
+        "copies": 5,
+        "paths": [
+          "Прочее/img\\pdf\\research\\List of Research Projects_Industry_01.04.2024.pdf",
+          "Прочее/img\\pdf\\Student-Exchange-Policy.pdf",
+          "Прочее/img\\pdf\\research\\List of Consultancy Projects and Services_01.04.2024.pdf",
+          "Прочее/img\\pdf\\research\\List of Patent Status_01.04.2024.pdf",
+          "Прочее/img\\pdf\\research\\List of Research Projects_Govt._01.04.2024-1.pdf"
+        ]
+      },
+      {
+        "size_kb": 0.16,
+        "copies": 4,
+        "paths": [
+          "Прочее/D212-208-10_01-04-03_TimoshenkoPE_Paper.pdf",
+          "Прочее/IT-1-L01_Introduction.pdf",
+          "Прочее/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0_%D1%80%D0%B0%D0%B7%D0%B2%D0%B8%D1%82%D0%B8%D1%8F_%D0%BA%D0%BB%D0%B0%D1%81%D1%82%D0%B5%D1%80%D0%B0_%D0%B4%D0%BE_2020%D0%B3.pdf",
+          "Прочее/D212-208-10_01-04-03_TimoshenkoPE_Synopsis.pdf"
+        ]
+      },
+      {
+        "size_kb": 4.59,
+        "copies": 3,
+        "paths": [
+          "Выгрузки/Сайты/page_71.html",
+          "Выгрузки/Сайты/page_73.html",
+          "Выгрузки/Сайты/page_174.html"
+        ]
+      },
+      {
+        "size_kb": 316.8,
+        "copies": 3,
+        "paths": [
+          "Выгрузки/Сайты/321257_1000.png",
+          "Выгрузки/Сайты/1066519_1000.png",
+          "Выгрузки/Сайты/1065550_1000.png"
+        ]
+      },
+      {
+        "size_kb": 0.17,
+        "copies": 3,
+        "paths": [
+          "Прочее/Plehanov2016.pdf",
+          "Прочее/Birlo2016.pdf",
+          "Прочее/Birlo2015.pdf"
+        ]
+      },
+      {
+        "size_kb": 0.62,
+        "copies": 3,
+        "paths": [
+          "Прочее/elibrary_26561301_36954629.pdf",
+          "Прочее/elibrary_23574569_13998696.pdf",
+          "Прочее/elibrary_25302434_33897683.pdf"
+        ]
+      },
+      {
+        "size_kb": 0.15,
+        "copies": 3,
+        "paths": [
+          "Прочее/_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%8B%20%D0%9F%D0%98%D0%A0%20%D0%B4%D0%BB%D1%8F%20%D0%9C%D0%9E%D0%9D_16-12-15.pdf",
+          "Прочее/_%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%B5%20%D0%B2%20%D0%9F%D0%98%D0%A0%20%D0%B3%D0%BE%D1%81%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B9.doc",
+          "Прочее/182-%D0%9E%D0%94.pdf"
+        ]
+      },
+      {
+        "size_kb": 635.42,
+        "copies": 2,
+        "paths": [
+          "Выгрузки/Логистика/customers.csv",
+          "Выгрузки/дочерние предприятия/Billing/full/customers.csv"
+        ]
+      }
+    ]
+  },
+  "suspicious_names": {
+    "flagged_files": 30,
+    "by_label": [
+      {
+        "label": "pd_consent",
+        "count": 8,
+        "total_mb": 1.2,
+        "samples": [
+          "Прочее/processing__agreement.pdf",
+          "Документы партнеров/agreement_reg.pdf",
+          "Документы партнеров/agreement_reg_extra.pdf"
+        ]
+      },
+      {
+        "label": "contract",
+        "count": 6,
+        "total_mb": 0.68,
+        "samples": [
+          "Прочее/Соглашение о сотрудничестве и взаимодействии,.pdf",
+          "Прочее/Пользовательское_соглашение_объясняем_рф.pdf",
+          "Выгрузки/Сайты/Доки/1738660894_Приложения к договору субаренды (2).pdf"
+        ]
+      },
+      {
+        "label": "individuals",
+        "count": 5,
+        "total_mb": 10.47,
+        "samples": [
+          "Выгрузки/дочерние предприятия/Billing/physical.parquet",
+          "Прочее/standing order about Scientific research institute  of Physics.pdf",
+          "Прочее/Course%20syllabus%20ADVANCED%20PROBLEMS%20OF%20MATHEMATICAL%20PHYSICS.pdf"
+        ]
+      },
+      {
+        "label": "clients",
+        "count": 3,
+        "total_mb": 5.31,
+        "samples": [
+          "Выгрузки/дочерние предприятия/Billing/client.parquet",
+          "Выгрузки/Логистика/customers.csv",
+          "Выгрузки/дочерние предприятия/Billing/full/customers.csv"
+        ]
+      },
+      {
+        "label": "payment",
+        "count": 3,
+        "total_mb": 0.17,
+        "samples": [
+          "Выгрузки/Сайты/95606027-14438121-The_Prince_and_Princess_of_Wales_have_arrived_in_Cardiff_for_a_d-a-108_1740588254200.jpg",
+          "Выгрузки/Сайты/Доки/Strategiya_razblokirovki_aktivov_SPB_Banka.pdf",
+          "Выгрузки/Сайты/holder_alerts_bd_videocard.png"
+        ]
+      },
+      {
+        "label": "scan_archive",
+        "count": 2,
+        "total_mb": 5.83,
+        "samples": [
+          "Прочее/CA01_01.tif",
+          "Прочее/CA06_02.tif"
+        ]
+      },
+      {
+        "label": "form",
+        "count": 1,
+        "total_mb": 0.06,
+        "samples": [
+          "Прочее/Анкета.docx"
+        ]
+      },
+      {
+        "label": "health",
+        "count": 1,
+        "total_mb": 3.51,
+        "samples": [
+          "Прочее/allied_health_sciences_2025.pdf"
+        ]
+      },
+      {
+        "label": "passport",
+        "count": 1,
+        "total_mb": 7.18,
+        "samples": [
+          "Прочее/Паспорта доступности_1.pdf"
+        ]
+      },
+      {
+        "label": "driver_license",
+        "count": 1,
+        "total_mb": 0.1,
+        "samples": [
+          "Прочее/osob_prava.pdf"
+        ]
+      }
+    ]
+  },
+  "csv_schemas": [
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/subscribers.csv",
+      "size_kb": 4319.2,
+      "delimiter": "','",
+      "columns": [
+        "IdClient",
+        "IdOnPSX",
+        "Status"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/Логистика/logistics.csv",
+      "size_kb": 3480.41,
+      "delimiter": "','",
+      "columns": [
+        "shipment_id",
+        "sale_id",
+        "origin_store_id",
+        "destination_address",
+        "transport_mode",
+        "carrier",
+        "departure_date",
+        "arrival_date",
+        "status",
+        "distance",
+        "cost"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/full/logistics.csv",
+      "size_kb": 3480.41,
+      "delimiter": "','",
+      "columns": [
+        "shipment_id",
+        "sale_id",
+        "origin_store_id",
+        "destination_address",
+        "transport_mode",
+        "carrier",
+        "departure_date",
+        "arrival_date",
+        "status",
+        "distance",
+        "cost"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/Логистика/sales.csv",
+      "size_kb": 1147.15,
+      "delimiter": "','",
+      "columns": [
+        "sale_id",
+        "store_id",
+        "customer_id",
+        "product_id",
+        "sale_date",
+        "quantity",
+        "total_amount",
+        "channel"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/full/sales.csv",
+      "size_kb": 1147.15,
+      "delimiter": "','",
+      "columns": [
+        "sale_id",
+        "store_id",
+        "customer_id",
+        "product_id",
+        "sale_date",
+        "quantity",
+        "total_amount",
+        "channel"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/Логистика/customers.csv",
+      "size_kb": 635.42,
+      "delimiter": "','",
+      "columns": [
+        "customer_id",
+        "customer_name",
+        "customer_type",
+        "segment",
+        "city",
+        "region"
+      ],
+      "pii_columns": [
+        {
+          "column": "city",
+          "category": "address"
+        },
+        {
+          "column": "region",
+          "category": "address"
+        }
+      ]
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/full/customers.csv",
+      "size_kb": 635.42,
+      "delimiter": "','",
+      "columns": [
+        "customer_id",
+        "customer_name",
+        "customer_type",
+        "segment",
+        "city",
+        "region"
+      ],
+      "pii_columns": [
+        {
+          "column": "city",
+          "category": "address"
+        },
+        {
+          "column": "region",
+          "category": "address"
+        }
+      ]
+    },
+    {
+      "path": "Выгрузки/Логистика/products.csv",
+      "size_kb": 72.08,
+      "delimiter": "','",
+      "columns": [
+        "product_id",
+        "product_name",
+        "category",
+        "sub_category",
+        "price"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/full/products.csv",
+      "size_kb": 72.08,
+      "delimiter": "','",
+      "columns": [
+        "product_id",
+        "product_name",
+        "category",
+        "sub_category",
+        "price"
+      ],
+      "pii_columns": []
+    },
+    {
+      "path": "Выгрузки/Логистика/stores.csv",
+      "size_kb": 0.86,
+      "delimiter": "','",
+      "columns": [
+        "store_id",
+        "store_name",
+        "store_type",
+        "city",
+        "region",
+        "latitude",
+        "longitude"
+      ],
+      "pii_columns": [
+        {
+          "column": "city",
+          "category": "address"
+        },
+        {
+          "column": "region",
+          "category": "address"
+        }
+      ]
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/full/stores.csv",
+      "size_kb": 0.86,
+      "delimiter": "','",
+      "columns": [
+        "store_id",
+        "store_name",
+        "store_type",
+        "city",
+        "region",
+        "latitude",
+        "longitude"
+      ],
+      "pii_columns": [
+        {
+          "column": "city",
+          "category": "address"
+        },
+        {
+          "column": "region",
+          "category": "address"
+        }
+      ]
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/psxattrs.csv",
+      "size_kb": 0.28,
+      "delimiter": "','",
+      "columns": [
+        "Id",
+        "PSX",
+        "TransmitUnits",
+        "Delimiter",
+        "DateFormat",
+        "TZ"
+      ],
+      "pii_columns": []
+    }
+  ],
+  "json_schemas": [
+    {
+      "path": "Прочее/incidents.json",
+      "size_kb": 281.02,
+      "top_keys": [],
+      "pii_keys": []
+    },
+    {
+      "path": "Прочее/incidents.schema.json",
+      "size_kb": 3.86,
+      "top_keys": [
+        "$schema",
+        "id",
+        "title",
+        "type",
+        "description",
+        "items"
+      ],
+      "pii_keys": []
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/plan.json",
+      "size_kb": 2.89,
+      "top_keys": [
+        "Id",
+        "Name",
+        "Description",
+        "CreatedAt",
+        "UpdatedAt",
+        "ClosedAt",
+        "Enabled",
+        "Attrs"
+      ],
+      "pii_keys": [
+        {
+          "column": "Name",
+          "category": "fio"
+        }
+      ]
+    },
+    {
+      "path": "Прочее/products.json",
+      "size_kb": 1.69,
+      "top_keys": [
+        "products"
+      ],
+      "pii_keys": []
+    },
+    {
+      "path": "Прочее/products.schema.json",
+      "size_kb": 0.59,
+      "top_keys": [
+        "$schema",
+        "id",
+        "title",
+        "type",
+        "properties"
+      ],
+      "pii_keys": []
+    }
+  ],
+  "parquet_schemas": [
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/client.parquet",
+      "size_kb": 4165.57,
+      "columns": [
+        "Id",
+        "Contract",
+        "Documents",
+        "Email",
+        "IdPlan"
+      ],
+      "pii_columns": [
+        {
+          "column": "Email",
+          "category": "email"
+        }
+      ]
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/physical.parquet",
+      "size_kb": 8671.25,
+      "columns": [
+        "Id",
+        "Contract",
+        "Documents",
+        "Email",
+        "IdPlan",
+        "Name",
+        "Address",
+        "Passport",
+        "Phones"
+      ],
+      "pii_columns": [
+        {
+          "column": "Email",
+          "category": "email"
+        },
+        {
+          "column": "Name",
+          "category": "fio"
+        },
+        {
+          "column": "Address",
+          "category": "address"
+        },
+        {
+          "column": "Passport",
+          "category": "passport"
+        },
+        {
+          "column": "Phones",
+          "category": "phone"
+        }
+      ]
+    },
+    {
+      "path": "Выгрузки/дочерние предприятия/Billing/company.parquet",
+      "size_kb": 1083.63,
+      "columns": [
+        "Id",
+        "Contract",
+        "Documents",
+        "Email",
+        "IdPlan",
+        "Name",
+        "Address",
+        "Phones",
+        "Contact"
+      ],
+      "pii_columns": [
+        {
+          "column": "Email",
+          "category": "email"
+        },
+        {
+          "column": "Name",
+          "category": "fio"
+        },
+        {
+          "column": "Address",
+          "category": "address"
+        },
+        {
+          "column": "Phones",
+          "category": "phone"
+        }
+      ]
+    }
+  ],
+  "workload": {
+    "workers_assumed": 8,
+    "estimate_serial_minutes": 22.3,
+    "estimate_parallel_minutes": 2.8,
+    "by_group_seconds": {
+      "Документы": 893.8,
+      "Изображения": 380.0,
+      "Видео": 43.3,
+      "Веб": 13.9,
+      "Таблицы": 4.7,
+      "Структурированные": 2.1,
+      "Прочее": 1.2,
+      "Текстовые": 0.0
+    },
+    "ocr_intensive_files": 984
+  },
+  "biggest_and_oldest": {
+    "biggest": [
+      {
+        "size_mb": 181.54,
+        "path": "Прочее/wpm5skhpgcr5ncwf6dwz92dutt9ucc13.pdf"
+      },
+      {
+        "size_mb": 107.62,
+        "path": "Прочее/ckp.pdf"
+      },
+      {
+        "size_mb": 60.11,
+        "path": "Прочее/Реестр экскурсоводов 2024_ 02.12.2024.pdf"
+      },
+      {
+        "size_mb": 51.13,
+        "path": "Прочее/UGC-Form-Annexures.pdf"
+      },
+      {
+        "size_mb": 30.11,
+        "path": "Прочее/Ustav2019.pdf"
+      },
+      {
+        "size_mb": 28.87,
+        "path": "Прочее/%20%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5.pdf"
+      },
+      {
+        "size_mb": 27.9,
+        "path": "Прочее/lodz-university-of-technology-on-the-path-of-sustainable-development_0.pdf"
+      },
+      {
+        "size_mb": 26.53,
+        "path": "Прочее/ub-mapa.pdf"
+      },
+      {
+        "size_mb": 24.16,
+        "path": "Прочее/РУКОВОДСТВО_ПО_БРЕНДИНГУ_2025.pdf"
+      },
+      {
+        "size_mb": 23.38,
+        "path": "Прочее/BRADBOOK%202013-V13.pdf"
+      },
+      {
+        "size_mb": 22.74,
+        "path": "Прочее/SELF_PORTRAIT_english_2025_ONLINE%20%281%29.pdf"
+      },
+      {
+        "size_mb": 22.42,
+        "path": "Прочее/DSUSampleFilledFeedbackCollected.pdf"
+      },
+      {
+        "size_mb": 20.13,
+        "path": "Выгрузки/Сайты/Доки/GlobalCriticalMineralsOutlook2024.pdf"
+      },
+      {
+        "size_mb": 19.47,
+        "path": "Прочее/Политика_СВА_в_отношении_обработки_ПДн_2025.pdf"
+      },
+      {
+        "size_mb": 19.3,
+        "path": "Прочее/PCTE-2025.pdf"
+      },
+      {
+        "size_mb": 18.89,
+        "path": "Прочее/PROGRAMMA%20FESTIVAL.pdf"
+      },
+      {
+        "size_mb": 18.65,
+        "path": "Прочее/83124a_7c666ad59fdd470f83e349daad57df65.pdf"
+      },
+      {
+        "size_mb": 16.75,
+        "path": "Прочее/SciFinder%20Discovery%20Platform.pdf"
+      },
+      {
+        "size_mb": 16.61,
+        "path": "Прочее/2015p.pdf"
+      },
+      {
+        "size_mb": 14.44,
+        "path": "Прочее/Highlights 18.pdf"
+      },
+      {
+        "size_mb": 12.19,
+        "path": "Прочее/Ростов_брендбук.pdf"
+      },
+      {
+        "size_mb": 11.12,
+        "path": "Прочее/UGC-Form-Appendices.pdf"
+      },
+      {
+        "size_mb": 10.81,
+        "path": "Прочее/CS10.mp4"
+      },
+      {
+        "size_mb": 10.31,
+        "path": "Прочее/723-30-07-2014.pdf"
+      },
+      {
+        "size_mb": 10.25,
+        "path": "Прочее/pr.pdf"
+      }
+    ],
+    "oldest": [
+      {
+        "date": "2025-04-29 02:17",
+        "path": "Выгрузки/Сайты/Доки/%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8%20%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20dg-yug.ru.pdf"
+      },
+      {
+        "date": "2025-04-29 03:53",
+        "path": "Выгрузки/Сайты/1070167_800.jpg"
+      },
+      {
+        "date": "2025-04-29 03:53",
+        "path": "Выгрузки/Сайты/10309_900.jpg"
+      },
+      {
+        "date": "2025-04-29 03:53",
+        "path": "Выгрузки/Сайты/1076381_1000.png"
+      },
+      {
+        "date": "2025-04-29 03:53",
+        "path": "Выгрузки/Сайты/1046ac88c1624f0bf3ffba06eb11fb58816bb742.png"
+      }
+    ],
+    "newest": [
+      {
+        "date": "2026-03-23 09:57",
+        "path": "Выгрузки/дочерние предприятия/Employes/servisnaya_zayavka_vyezd_inzhenera.txt"
+      },
+      {
+        "date": "2026-03-23 09:57",
+        "path": "Выгрузки/дочерние предприятия/Employes/zayavka_na_propusk_v_zhk.txt"
+      },
+      {
+        "date": "2026-03-23 09:57",
+        "path": "Выгрузки/дочерние предприятия/Employes/doverennost_na_poluchenie_posylki.txt"
+      },
+      {
+        "date": "2026-03-23 09:57",
+        "path": "Выгрузки/дочерние предприятия/Employes/akt_priema_peredachi_rabochego_mesta.txt"
+      },
+      {
+        "date": "2026-03-23 09:57",
+        "path": "Выгрузки/дочерние предприятия/Employes/perepiska_email_dostavka_kresla.txt"
+      }
+    ]
+  },
+  "analysis_seconds": 2.31
+}
