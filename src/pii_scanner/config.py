@@ -57,7 +57,9 @@ class ReportingCfg(BaseModel):
 
 class LoggingCfg(BaseModel):
     level: str = "INFO"
-    json: bool = False
+    json_output: bool = Field(default=False, alias="json")
+
+    model_config = {"populate_by_name": True}
 
 
 class AppConfig(BaseModel):

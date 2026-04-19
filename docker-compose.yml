@@ -1,0 +1,21 @@
+services:
+  scanner:
+    build: .
+    image: pii-scanner:latest
+    container_name: pii-scanner
+    volumes:
+      - ./data/share:/data:ro
+      - ./reports:/reports
+    environment:
+      WORKERS: "${WORKERS:-8}"
+      OCR_BACKEND: "${OCR_BACKEND:-tesseract}"
+    command:
+      - scan
+      - --input
+      - /data
+      - --output
+      - /reports
+      - --workers
+      - "${WORKERS:-8}"
+      - --ocr
+      - "${OCR_MODE:-auto}"

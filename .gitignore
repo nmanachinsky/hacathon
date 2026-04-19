@@ -14,3 +14,5 @@ reports/*
 data/share/
 .cache/
 *.log
+bundle_to_md.py
+project_context.md
