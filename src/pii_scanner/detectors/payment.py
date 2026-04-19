@@ -10,6 +10,7 @@ from .context_scorer import context_window
 from .patterns import (
     BANK_ACCOUNT_CONTEXT_RE,
     BANK_ACCOUNT_RE,
+    BANK_CARD_CONTEXT_RE,
     BANK_CARD_RE,
     BIK_CONTEXT_RE,
     BIK_RE,
@@ -22,14 +23,20 @@ from .validators import account_check, bik_check, luhn_check
 def detect_bank_cards(text: str) -> Iterable[RawMatch]:
     for m in BANK_CARD_RE.finditer(text):
         value = m.group(0)
-        if not luhn_check(value):
+        valid_luhn = luhn_check(value)
+        ctx = context_window(text, m.start(), m.end(), 60)
+        has_ctx = bool(BANK_CARD_CONTEXT_RE.search(ctx))
+        
+        # Если Лун не сошёлся (синтетика), но есть явное слово "карта" - берём
+        if not valid_luhn and not has_ctx:
             continue
+            
         yield RawMatch(
             category=PIICategory.BANK_CARD,
             value=value,
             start=m.start(),
             end=m.end(),
-            confidence=0.95,
+            confidence=0.95 if valid_luhn else 0.75,
         )
 
 
@@ -52,7 +59,7 @@ def detect_bik(text: str) -> Iterable[RawMatch]:
 
 def detect_bank_accounts(text: str) -> Iterable[RawMatch]:
     """Найти 20-значные счета. Если рядом есть БИК — валидируем контрольный разряд."""
-    biks = [m.group(0) for m in BIK_RE.finditer(text) if bik_check(m.group(0))]
+    biks =[m.group(0) for m in BIK_RE.finditer(text) if bik_check(m.group(0))]
     for m in BANK_ACCOUNT_RE.finditer(text):
         value = m.group(0)
         ctx = context_window(text, m.start(), m.end(), 80)

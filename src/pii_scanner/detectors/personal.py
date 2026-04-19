@@ -10,6 +10,7 @@ from .patterns import (
     ADDRESS_RE,
     BIRTH_CONTEXT_RE,
     BIRTH_DATE_RE,
+    BIRTH_PLACE_RE,
     FIO_INITIALS_RE,
     FIO_RE,
     POSTAL_INDEX_RE,
@@ -57,6 +58,18 @@ def detect_birth_dates(text: str) -> Iterable[RawMatch]:
             start=m.start(),
             end=m.end(),
             confidence=confidence,
+        )
+
+
+def detect_birth_place(text: str) -> Iterable[RawMatch]:
+    """Поиск места рождения по специфичному контексту."""
+    for m in BIRTH_PLACE_RE.finditer(text):
+        yield RawMatch(
+            category=PIICategory.BIRTH_PLACE,
+            value=m.group(1).strip(),
+            start=m.start(1),
+            end=m.end(1),
+            confidence=0.85,
         )
 
 

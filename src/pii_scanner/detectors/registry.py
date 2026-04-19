@@ -7,8 +7,9 @@ from collections.abc import Iterable
 from .base import RawMatch
 from .contacts import detect_emails, detect_phones
 from .context_scorer import boost_confidence, context_window
+from .direct import detect_direct_markers
 from .payment import detect_bank_accounts, detect_bank_cards, detect_bik, detect_cvv
-from .personal import detect_addresses, detect_birth_dates, detect_fio_regex
+from .personal import detect_addresses, detect_birth_dates, detect_birth_place, detect_fio_regex
 from .sensitive import (
     detect_biometric,
     detect_health,
@@ -28,6 +29,7 @@ from .state_id import (
 
 def _all_detectors():
     return (
+        detect_direct_markers,  # Прямые маркеры из таблиц/JSON (наивысший приоритет)
         detect_emails,
         detect_phones,
         detect_passports,
@@ -42,6 +44,7 @@ def _all_detectors():
         detect_cvv,
         detect_fio_regex,
         detect_birth_dates,
+        detect_birth_place,     # Место рождения
         detect_addresses,
         detect_biometric,
         detect_health,
