@@ -7,12 +7,14 @@ import re
 # --- Контакты ---
 
 EMAIL_RE = re.compile(
-    r"\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b",
+    r"\b(?!(?:info|support|help|admin|sales|contact|press|pr|marketing|"
+    r"hello|career|hr|job|docflow|zamena|legal|zakaz|b2b|office|noreply|feedback)@)"
+    r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b",
     re.IGNORECASE,
 )
 
 PHONE_RE = re.compile(
-    r"(?<!\d)(?:\+7|8)[\s\-\(\)]*\d{3}[\s\-\(\)]*\d{3}[\s\-\(\)]*\d{2}[\s\-\(\)]*\d{2}(?!\d)"
+    r"(?<!\d)(?:\+7|8)[\s\-\(\)]*(?!800\b)\d{3}[\s\-\(\)]*\d{3}[\s\-\(\)]*\d{2}[\s\-\(\)]*\d{2}(?!\d)"
 )
 
 # --- Паспорт РФ ---
@@ -112,9 +114,8 @@ FIO_INITIALS_RE = re.compile(
 
 BIOMETRIC_TERMS_RE = re.compile(
     r"\b(?:отпечат\w+\s+пальц\w+|радужн\w+\s+оболочк\w+|"
-    r"голосов\w+\s+(?:образ\w+|слепок|отпечат\w+)|"
-    r"геометрия\s+лица|биометрическ\w+\s+(?:данн\w+|шаблон\w+|идентификат\w+)|"
-    r"распознавание\s+лиц)",
+    r"голосов\w+\s+(?:образ\w+|слепок)|"
+    r"геометри\w+\s+лиц\w+|биометрическ\w+\s+(?:данн\w+|шаблон\w+))",
     re.IGNORECASE,
 )
 
@@ -126,9 +127,7 @@ HEALTH_TERMS_RE = re.compile(
     re.IGNORECASE,
 )
 RELIGION_TERMS_RE = re.compile(
-    r"\b(?:вероисповедан\w+|религиозн\w+\s+(?:принадлежн\w+|убежден\w+)|"
-    r"православн\w+|католи[кч]\w*|мусульман\w+|иудаист\w+|буддист\w+|"
-    r"атеист\w+|агностик\w+)\b",
+    r"\b(?:православн\w+|католи[кч]\w*|мусульман\w+|иудаист\w+|буддист\w+)\b",
     re.IGNORECASE,
 )
 POLITICS_TERMS_RE = re.compile(
@@ -137,8 +136,7 @@ POLITICS_TERMS_RE = re.compile(
     re.IGNORECASE,
 )
 RACE_TERMS_RE = re.compile(
-    r"\b(?:расов\w+\s+принадлеж\w+|национальн\w+\s+принадлеж\w+|"
-    r"этническ\w+\s+(?:принадлеж\w+|происхожден\w+))",
+    r"\b(?:этническ\w+\s+происхожден\w+)",
     re.IGNORECASE,
 )
 

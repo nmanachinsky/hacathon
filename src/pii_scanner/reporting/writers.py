@@ -53,43 +53,41 @@ def write_csv(reports: list[dict], path: Path) -> None:
 # Категории, само наличие которых — сильный сигнал (валидаторы Luhn/SNILS/INN/BIK,
 # спецкатегории, биометрия — все они уже жёстко отфильтрованы детекторами).
 _HIGH_CONFIDENCE_CATEGORIES = frozenset({
-    "passport_rf", "snils", "inn_personal", "inn_legal",
-    "driver_license", "mrz", "ogrn",
+    "passport_rf", "snils", "inn_personal", "driver_license", "mrz", 
     "bank_card", "bank_account", "bik", "cvv",
-    "biometric", "health", "religion", "politics", "race", "other_sensitive",
+    "biometric", "health", "religion", "politics", "race", "other_sensitive"
 })
 
-# Слабые категории — каждая по отдельности часто FP (NER ловит любые имена,
-# email/phone могут быть служебными в HTML, адрес — название города в любом тексте).
-_WEAK_SINGLE_CATEGORIES = frozenset({"fio", "address", "birth_place"})
+# "Мягкие" категории (одиночное ФИО, город в тексте или ОГРН компании)
+_WEAK_SINGLE_CATEGORIES = frozenset({"fio", "address", "birth_place", "ogrn", "inn_legal"})
+# "Связующие" категории (превращают набор имен в реальную базу данных)
+_MEDIUM_CATEGORIES = frozenset({"email", "phone", "birth_date"})
 
 
 def _is_confident_pii(report: dict) -> bool:
-    """Решение, попадает ли файл в result.csv. Жёсткая защита от FP.
-
-    Правила:
-      - Файлы с любой high-confidence категорией → True (валидаторы дают FP крайне редко).
-      - Только обычные ПДн: требуем ≥2 разных категорий ИЛИ ≥3 экземпляров одной
-        не-«слабой» категории (email/phone/birth_date).
-      - Одиночные ФИО / адрес / место рождения без подтверждения — отбрасываем.
-    """
     counts: dict[str, int] = report.get("category_counts") or {}
     if not counts:
         return False
-    if report.get("protection_level", ProtectionLevel.NONE.value) == ProtectionLevel.NONE.value:
-        return False
 
+    # 1. Если есть жесткий маркер (Паспорт, СНИЛС, Карта) -> это 100% утечка
     if any(cat in _HIGH_CONFIDENCE_CATEGORIES for cat in counts):
         return True
 
+    # 2. ПРАВИЛО СВЯЗНОСТИ: Если нет жестких маркеров, проверяем связующие.
+    has_medium = any(cat in _MEDIUM_CATEGORIES for cat in counts)
+    
+    # Если в файле только ФИО, Адреса и ОГРН, но НЕТ ни телефонов, ни email, ни дат рождения
+    # -> это презентация, художественный текст или мануал. Отбрасываем.
+    if not has_medium:
+        return False
+
+    # 3. Если связующие маркеры есть, требуем разнообразия (ФИО + email)
+    # или массовости (список из 3+ email-ов).
     distinct_categories = len(counts)
     if distinct_categories >= 2:
         return True
 
-    only_cat, only_count = next(iter(counts.items()))
-    if only_cat in _WEAK_SINGLE_CATEGORIES:
-        return False
-    # Одна обычная категория (email / phone / birth_date) — требуем массовость.
+    only_count = next(iter(counts.values()))
     return only_count >= 3
 
 
