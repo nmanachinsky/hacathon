@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable
 from typing import Any
 
@@ -10,6 +11,10 @@ from .base import RawMatch
 
 # Ленивая инициализация — модели Natasha занимают ~150 МБ ОЗУ
 _NER_BUNDLE: dict[str, Any] | None = None
+
+# Регулярки для фильтрации ложных срабатываний (OCR-мусор и английские тексты)
+_LATIN_RE = re.compile(r"[a-zA-Z]")
+_RUS_VOWEL_RE = re.compile(r"[аеёиоуыэюяАЕЁИОУЫЭЮЯ]")
 
 
 def _bundle() -> dict[str, Any] | None:
@@ -70,11 +75,31 @@ def detect_ner(text: str, max_chars: int = 50_000) -> Iterable[RawMatch]:
                 category = PIICategory.FIO
             elif span.type == "LOC":
                 category = PIICategory.ADDRESS
+            
             if category is None:
                 continue
+
+            value = span.text
+
+            # --- ЗАЩИТА ОТ ЛОЖНЫХ СРАБАТЫВАНИЙ ---
+            # 1. Если есть латиница — это не целевые ПДн граждан РФ (отсеивает английские ФИО/Адреса)
+            if _LATIN_RE.search(value):
+                continue
+            
+            # 2. Должна быть хотя бы одна русская гласная.
+            # Отсеивает OCR-мусор и инициалы без фамилий вида "С. М.", "В. В.", "Д. Н. R."
+            if not _RUS_VOWEL_RE.search(value):
+                continue
+            
+            # 3. Чистый буквенный текст должен быть длиннее 2 символов
+            alpha_only = re.sub(r"\W", "", value)
+            if len(alpha_only) < 3:
+                continue
+            # -------------------------------------
+
             yield RawMatch(
                 category=category,
-                value=span.text,
+                value=value,
                 start=offset + span.start,
                 end=offset + span.stop,
                 confidence=0.85,

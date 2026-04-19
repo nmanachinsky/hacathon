@@ -4,7 +4,7 @@ services:
     image: pii-scanner:latest
     container_name: pii-scanner
     volumes:
-      - ./data/share/Архив сканы/a:/data:ro
+      - ./data/share/Документы партнеров:/data:ro
       - ./reports:/reports
     environment:
       WORKERS: "${WORKERS:-10}"
