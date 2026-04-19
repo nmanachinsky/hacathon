@@ -4,11 +4,12 @@ services:
     image: pii-scanner:latest
     container_name: pii-scanner
     volumes:
-      - ./data/share:/data:ro
+      - ./data/share/Документы партнеров:/data:ro
       - ./reports:/reports
     environment:
-      WORKERS: "${WORKERS:-8}"
+      WORKERS: "${WORKERS:-10}"
       OCR_BACKEND: "${OCR_BACKEND:-tesseract}"
+      OMP_THREAD_LIMIT: "1"
     command:
       - scan
       - --input
@@ -16,6 +17,6 @@ services:
       - --output
       - /reports
       - --workers
-      - "${WORKERS:-8}"
+      - "${WORKERS:-10}"
       - --ocr
       - "${OCR_MODE:-auto}"

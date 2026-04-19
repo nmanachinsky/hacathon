@@ -46,6 +46,26 @@ def _rows_from_locator(locator: str) -> int:
 
 # ---- Worker function ----
 
+def _silence_noisy_loggers() -> None:
+    """Глушим болтливые библиотеки — pypdf/pdfminer/PIL засоряют stderr на каждом битом PDF."""
+    import logging as _logging
+
+    for name in (
+        "pypdf",
+        "pypdf._reader",
+        "pypdf.generic",
+        "pdfminer",
+        "pdfminer.pdfparser",
+        "pdfminer.pdfdocument",
+        "pdfminer.pdfinterp",
+        "pdfminer.cmapdb",
+        "pdfplumber",
+        "PIL",
+        "trafilatura",
+    ):
+        _logging.getLogger(name).setLevel(_logging.ERROR)
+
+
 def process_file(
     path_str: str,
     cfg_dict: dict,
@@ -53,6 +73,7 @@ def process_file(
     """Запускается в подпроцессе. Возвращает сериализуемый dict с результатом."""
     from .config import AppConfig as _AppConfig
 
+    _silence_noisy_loggers()
     cfg = _AppConfig.model_validate(cfg_dict)
     path = Path(path_str)
     started = time.perf_counter()

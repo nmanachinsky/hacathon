@@ -64,12 +64,20 @@ def scan(
         MofNCompleteColumn(),
         TimeElapsedColumn(),
         TimeRemainingColumn(),
+        TextColumn("[dim]{task.fields[current]}"),
         console=console,
+        transient=False,
     ) as progress:
-        task_id = progress.add_task("Обработка файлов", total=files_pre)
+        task_id = progress.add_task("Обработка файлов", total=files_pre, current="")
 
-        def cb(done: int, total: int, _res: dict) -> None:
-            progress.update(task_id, completed=done, total=total)
+        def cb(done: int, total: int, res: dict) -> None:
+            try:
+                rel = Path(res.get("path", "")).name
+            except Exception:  # noqa: BLE001
+                rel = ""
+            if len(rel) > 60:
+                rel = "…" + rel[-59:]
+            progress.update(task_id, completed=done, total=total, current=rel)
 
         for res in run_scan(input_dir, cfg, progress_cb=cb):
             reports.append(res)

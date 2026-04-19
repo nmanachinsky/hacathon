@@ -12,6 +12,28 @@ from . import csv_ext, doc, docx, html, image, json_ext, parquet_ext, pdf, rtf, 
 from .base import ExtractorError
 
 
+_HTML_MAGIC_PREFIXES = (b"<!doc", b"<html", b"<?xml", b"<!--", b"<head")
+
+
+def _sniff_actual_kind(path: Path, declared_kind: str) -> str:
+    """Распознать файлы, которые имеют расширение PDF/DOC/etc., но реально — HTML/XML.
+
+    Многие выгрузки сохраняют веб-страницы под расширением .pdf — pypdf падает на них с
+    "invalid pdf header: b'<!DOC'". Определяем по magic-байтам и подменяем kind.
+    """
+    if declared_kind not in {"pdf", "doc", "docx", "rtf"}:
+        return declared_kind
+    try:
+        with path.open("rb") as f:
+            head = f.read(512)
+    except OSError:
+        return declared_kind
+    head_strip = head.lstrip().lower()
+    if any(head_strip.startswith(p) for p in _HTML_MAGIC_PREFIXES):
+        return "html"
+    return declared_kind
+
+
 def extract_text(
     path: Path,
     *,
@@ -21,6 +43,7 @@ def extract_text(
     kind = guess_kind(path)
     if kind is None:
         raise ExtractorError(f"unsupported format: {path.suffix}")
+    kind = _sniff_actual_kind(path, kind)
 
     if kind == "text":
         yield from text.extract(path)
