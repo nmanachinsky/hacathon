@@ -27,6 +27,9 @@ from .state_id import (
 )
 
 
+_DIRECT_MARKER = "[[PII_DIRECT:"
+
+
 def _all_detectors():
     return (
         detect_direct_markers,  # Прямые маркеры из таблиц/JSON (наивысший приоритет)
@@ -44,13 +47,36 @@ def _all_detectors():
         detect_cvv,
         detect_fio_regex,
         detect_birth_dates,
-        detect_birth_place,     # Место рождения
+        detect_birth_place,
         detect_addresses,
         detect_biometric,
         detect_health,
         detect_religion,
         detect_politics,
         detect_race,
+    )
+
+
+def _structured_detectors():
+    """Быстрый набор для CSV/Parquet — пропускаем широкие текстовые паттерны,
+    которые дают ложные срабатывания на табличных данных."""
+    return (
+        detect_direct_markers,
+        detect_emails,
+        detect_phones,
+        detect_passports,
+        detect_snils,
+        detect_inn,
+        detect_ogrn,
+        detect_driver_license,
+        detect_bank_cards,
+        detect_bik,
+        detect_bank_accounts,
+        detect_cvv,
+        detect_fio_regex,
+        detect_birth_dates,
+        # Пропускаем: detect_mrz, detect_birth_place, detect_addresses,
+        # detect_biometric, detect_health, detect_religion, detect_politics, detect_race
     )
 
 
@@ -62,13 +88,18 @@ def detect_all(
     context_radius: int = 60,
     min_confidence: float = 0.0,
 ) -> Iterable[RawMatch]:
-    """Запустить все детекторы и применить контекстный скоринг."""
+    """Запустить детекторы и применить контекстный скоринг.
+
+    Для структурированных данных (маркеры [[PII_DIRECT:]]) автоматически
+    используется сокращённый набор детекторов.
+    """
     if not text:
         return
 
     seen: set[tuple[str, int, int]] = set()
+    detectors = _structured_detectors() if _DIRECT_MARKER in text else _all_detectors()
 
-    for detector in _all_detectors():
+    for detector in detectors:
         for raw in detector(text):
             key = (raw.category.value, raw.start, raw.end)
             if key in seen:

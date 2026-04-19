@@ -16,6 +16,9 @@ _NER_BUNDLE: dict[str, Any] | None = None
 _LATIN_RE = re.compile(r"[a-zA-Z]")
 _RUS_VOWEL_RE = re.compile(r"[аеёиоуыэюяАЕЁИОУЫЭЮЯ]")
 
+_MIN_NER_TEXT_LEN = 50    # Слишком короткий текст — никаких сущностей там нет
+_MIN_CYR_RATIO = 0.05     # Менее 5% кириллицы → не русский текст, NER бесполезен
+
 
 def _bundle() -> dict[str, Any] | None:
     global _NER_BUNDLE
@@ -46,8 +49,17 @@ def _bundle() -> dict[str, Any] | None:
     return _NER_BUNDLE
 
 
-def detect_ner(text: str, max_chars: int = 50_000) -> Iterable[RawMatch]:
+def detect_ner(text: str, max_chars: int = 20_000) -> Iterable[RawMatch]:
     """Извлечь сущности через Natasha. На больших текстах — нарезаем чанками."""
+    if len(text) < _MIN_NER_TEXT_LEN:
+        return
+
+    # Быстрая проверка наличия кириллицы на первых 500 символах как сэмпл
+    sample = text[:500]
+    cyr_count = sum(1 for c in sample if "\u0400" <= c <= "\u04FF")
+    if cyr_count < len(sample) * _MIN_CYR_RATIO:
+        return
+
     bundle = _bundle()
     if bundle is None:
         return

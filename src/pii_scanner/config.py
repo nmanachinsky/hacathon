@@ -15,7 +15,7 @@ class ScanCfg(BaseModel):
     workers: int = 8
     ocr_workers: int = 2
     max_file_size_mb: int = 200
-    max_pdf_pages: int = 500
+    max_pdf_pages: int = 100
     enable_dedup: bool = True
     checkpoint_path: str = "reports/.checkpoint.jsonl"
 
@@ -38,8 +38,8 @@ class DetectCfg(BaseModel):
     min_confidence: float = 0.6
     context_window: int = 60
     use_ner: bool = True
-    ner_max_chars: int = 50000
-    max_chunks_per_file: int = 10000
+    ner_max_chars: int = 20_000
+    max_chunks_per_file: int = 100
 
 
 class ClassificationCfg(BaseModel):

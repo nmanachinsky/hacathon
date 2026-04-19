@@ -20,8 +20,8 @@ def extract(
     *,
     enabled: bool = True,
     languages: list[str] | None = None,
-    every_seconds: float = 2.0,
-    max_frames: int = 30,
+    every_seconds: float = 5.0,
+    max_frames: int = 5,
 ) -> Iterable[TextChunk]:
     if not enabled or not _ffmpeg_available():
         return

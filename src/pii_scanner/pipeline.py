@@ -11,7 +11,7 @@ import re
 import time
 from collections import Counter
 from collections.abc import Iterator
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from .classification.uz_classifier import classify
@@ -31,6 +31,9 @@ from .types import (
     ProtectionLevel,
     TextChunk,
 )
+
+# Файловые форматы, требующие OCR: обрабатываем отдельным пулом с ограниченным параллелизмом
+_OCR_KINDS = frozenset({"image", "video"})
 from .utils.logging import get_logger
 
 log = get_logger(__name__)
@@ -107,9 +110,12 @@ def process_file(
                 break
             text_length += len(chunk.text)
             rows_processed += _rows_from_locator(chunk.locator)
+            # Структурированные данные (CSV/Parquet) содержат [[PII_DIRECT:]] маркеры —
+            # NER на них бесполезен и только замедляет обработку
+            has_direct_markers = "[[PII_DIRECT:" in chunk.text
             for raw in detect_all(
                 chunk.text,
-                use_ner=cfg.detect.use_ner,
+                use_ner=cfg.detect.use_ner and not has_direct_markers,
                 ner_max_chars=cfg.detect.ner_max_chars,
                 context_radius=cfg.detect.context_window,
                 min_confidence=cfg.detect.min_confidence,
@@ -180,6 +186,31 @@ def _failed_report(path: Path, error: str, size: int, elapsed: float) -> dict:
 
 # ---- Orchestration ----
 
+def _dedup_parallel(files: list[Path], workers: int) -> list[Path]:
+    """Параллельное хэширование файлов для дедупликации (I/O-bound → ThreadPool)."""
+    registry = HashRegistry()
+    deduped: list[Path] = []
+
+    def _hash_one(path: Path) -> tuple[Path, str | None]:
+        try:
+            return path, hash_file(path)
+        except OSError as exc:
+            log.warning("hash_failed", path=str(path), err=str(exc))
+            return path, None
+
+    # ThreadPool эффективен для I/O-bound хэширования файлов
+    thread_workers = min(workers * 2, 32, len(files))
+    with ThreadPoolExecutor(max_workers=max(1, thread_workers)) as pool:
+        for path, h in pool.map(_hash_one, files):
+            if h is None:
+                deduped.append(path)  # ошибка хэширования — обрабатываем всё равно
+            elif registry.register(path, h):
+                deduped.append(path)
+
+    log.info("dedup_done", unique=registry.total_unique, duplicates=registry.total_duplicates)
+    return deduped
+
+
 def run_scan(
     input_dir: Path,
     cfg: AppConfig,
@@ -190,53 +221,56 @@ def run_scan(
     files = list(walk_files(input_dir))
     log.info("scan_start", total_files=len(files), workers=cfg.scan.workers)
 
-    # Дедуп
-    deduped: list[Path] = []
-    duplicates_map: dict[str, list[Path]] = {}
-    if cfg.scan.enable_dedup:
-        registry = HashRegistry()
-        for f in files:
-            try:
-                h = hash_file(f)
-            except OSError as exc:
-                log.warning("hash_failed", path=str(f), err=str(exc))
-                deduped.append(f)
-                continue
-            if registry.register(f, h):
-                deduped.append(f)
-                duplicates_map.setdefault(h, [f])
-            else:
-                duplicates_map.setdefault(h, []).append(f)
-        log.info(
-            "dedup_done",
-            unique=registry.total_unique,
-            duplicates=registry.total_duplicates,
-        )
-    else:
-        deduped = files
+    deduped = _dedup_parallel(files, cfg.scan.workers) if cfg.scan.enable_dedup else files
 
     cfg_dict = cfg.model_dump()
     workers = max(1, cfg.scan.workers)
+    ocr_workers = max(1, cfg.scan.ocr_workers)
+    total = len(deduped)
     completed = 0
 
-    if workers == 1:
-        for path in deduped:
-            res = process_file(str(path), cfg_dict)
-            completed += 1
-            if progress_cb:
-                progress_cb(completed, len(deduped), res)
-            yield res
-        return
+    # Разделяем по тяжести: OCR-файлы идут в отдельный ограниченный пул,
+    # чтобы Tesseract не насыщал все CPU-ядра одновременно
+    light: list[Path] = []
+    heavy: list[Path] = []
+    for p in deduped:
+        kind = guess_kind(p)
+        (heavy if kind in _OCR_KINDS else light).append(p)
 
-    with ProcessPoolExecutor(max_workers=workers) as ex:
-        futures = {ex.submit(process_file, str(p), cfg_dict): p for p in deduped}
-        for fut in as_completed(futures):
+    # Лёгкие файлы — по размеру: маленькие сначала для быстрого первого результата
+    try:
+        light.sort(key=lambda p: p.stat().st_size)
+    except OSError:
+        pass
+
+    def _yield_from_pool(executor: ProcessPoolExecutor, paths: list[Path]) -> Iterator[dict]:
+        nonlocal completed
+        futs = {executor.submit(process_file, str(p), cfg_dict): p for p in paths}
+        for fut in as_completed(futs):
             try:
                 res = fut.result()
             except Exception as exc:  # noqa: BLE001
-                p = futures[fut]
+                p = futs[fut]
                 res = _failed_report(p, f"worker_crash: {exc}", 0, 0.0)
             completed += 1
             if progress_cb:
-                progress_cb(completed, len(deduped), res)
+                progress_cb(completed, total, res)
             yield res
+
+    if workers == 1:
+        for path in light + heavy:
+            res = process_file(str(path), cfg_dict)
+            completed += 1
+            if progress_cb:
+                progress_cb(completed, total, res)
+            yield res
+        return
+
+    # Лёгкие файлы (текст, PDF, HTML, CSV) — основной пул с полным числом воркеров
+    with ProcessPoolExecutor(max_workers=workers) as ex:
+        yield from _yield_from_pool(ex, light)
+
+    # OCR-файлы (изображения, видео) — ограниченный пул: Tesseract очень CPU-тяжёл
+    if heavy:
+        with ProcessPoolExecutor(max_workers=ocr_workers) as ex:
+            yield from _yield_from_pool(ex, heavy)

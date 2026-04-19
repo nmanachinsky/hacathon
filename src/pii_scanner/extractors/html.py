@@ -9,11 +9,16 @@ import chardet
 
 from ..types import TextChunk
 
+_MAX_HTML_BYTES = 5 * 1024 * 1024  # 5 MB — trafilatura сам отбирает основной контент
+
 
 def extract(path: Path) -> Iterable[TextChunk]:
     raw = path.read_bytes()
     if not raw:
         return
+    # Обрезаем гигантские HTML: хвост обычно — рекомендации/трекеры, не ПДн
+    if len(raw) > _MAX_HTML_BYTES:
+        raw = raw[:_MAX_HTML_BYTES]
     try:
         text_html = raw.decode("utf-8")
     except UnicodeDecodeError:

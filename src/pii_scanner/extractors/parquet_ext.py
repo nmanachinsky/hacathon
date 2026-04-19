@@ -1,4 +1,4 @@
-"""Экстракция Parquet (батчами через pyarrow)."""
+"""Экстракция Parquet (только первые строки для быстрого сэмплирования)."""
 
 from __future__ import annotations
 
@@ -7,21 +7,28 @@ from pathlib import Path
 
 from ..types import TextChunk
 
-_BATCH = 25_000
+# Для определения наличия ПДн достаточно первых строк — не читаем весь файл
+_MAX_ROWS = 1_000
 
 
 def extract(path: Path) -> Iterable[TextChunk]:
     import pyarrow.parquet as pq
 
     pf = pq.ParquetFile(path)
-    schema = pf.schema_arrow
-    columns = [field.name for field in schema]
+    columns = [field.name for field in pf.schema_arrow]
 
-    chunk_index = 0
-    for batch in pf.iter_batches(batch_size=_BATCH):
+    # Читаем только первый батч — break после него
+    for batch in pf.iter_batches(batch_size=_MAX_ROWS):
         df = batch.to_pandas()
-        body_lines: list[str] = [" ".join(columns)]
-        for _, row in df.iterrows():
-            body_lines.append("; ".join(f"{c}={v}" for c, v in row.items() if v is not None and v != ""))
-        yield TextChunk(text="\n".join(body_lines), locator=f"batch={chunk_index}:rows={len(df)}")
-        chunk_index += 1
+        break
+    else:
+        return
+
+    body_lines: list[str] = [" ".join(columns)]
+    # to_dict('records') ~10x быстрее iterrows(): нет создания Series на строку
+    for record in df.to_dict("records"):
+        row_str = "; ".join(f"{c}={v}" for c, v in record.items() if v is not None and str(v) != "")
+        if row_str:
+            body_lines.append(row_str)
+
+    yield TextChunk(text="\n".join(body_lines), locator=f"batch=0:rows={len(df)}")
